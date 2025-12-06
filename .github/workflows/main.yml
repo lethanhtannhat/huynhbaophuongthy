@@ -9,6 +9,8 @@ on:
 jobs:
   submit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Cấp quyền ghi (push) cho GITHUB_TOKEN
     steps:
       - uses: actions/checkout@v4  # Tải code từ repo
         with:
@@ -37,6 +39,7 @@ jobs:
           git commit -m "Updated time.csv and index.txt after form submission" || echo "No changes to commit"
           
           
-          
+          git pull origin main --rebase
           # Sau đó push
           git push
+
